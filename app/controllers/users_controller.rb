@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :authorize, only: [:index]
+
   def index
     @users = User.all
   end
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_shared_secret_reset
-      redirect_to login_path, :notice => 'Email sent with further instructions.'
+      redirect_to login_path, notice: 'Email sent with further instructions.'
     else
       render 'new'
     end
