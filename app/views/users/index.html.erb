@@ -1,0 +1,18 @@
+<table>
+  <thead>
+  <tr>
+    <th width="30%">Email</th>
+    <th width="30%">Last Reset Request</th>
+    <th width="30%">Registered</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= l user.reset_sent_at, :format => :long %></td>
+        <td><%= l user.created_at, :format => :long %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
