@@ -1,14 +1,79 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en"> <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
 <head>
-  <title>GoogleAuthenticated</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title><%= content_for?(:title) ? yield(:title) : "GARP - Google Authenticator Rails Passwordless" %></title>
+
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<nav class="top-bar" data-topbar="">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1>
+        <a href="#">
+          GARP - Google Authenticator Rails Passwordless
+        </a>
+      </h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+  </ul>
 
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="divider"></li>
+      <% if current_user %>
+          <li><a href="#"><%= current_user.email %></a></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Log Out', logout_path %></li>
+      <% else %>
+          <li><%= link_to 'Log In', login_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Sign Up', signup_path %></li>
+      <% end %>
+    </ul>
+  </section>
+</nav>
+
+<div class="row">
+  <div class="large-12 columns">
+
+    <%= render 'layouts/messages' %>
+
+    <%= yield %>
+    <!-- End Content -->
+
+
+    <!-- Footer -->
+
+    <footer class="row">
+      <div class="large-12 columns">
+        <hr>
+        <div class="row">
+
+          <div class="large-6 columns">
+            <p>&copy; Copyright no one at all. Go to town.</p>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <!-- End Footer -->
+
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
 </body>
 </html>

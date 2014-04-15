@@ -1,0 +1,18 @@
+<h1>Log In</h1>
+
+<%= form_tag sessions_path do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <br/>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="field">
+      <%= label_tag :validation_code %>
+      <br/>
+      <%= text_field_tag :validation_code %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Log In" %>
+      <p><%= link_to "Reset Authenticator", new_shared_secret_reset_path %></p>
+    </div>
+<% end %>

@@ -1,0 +1,23 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+              <div data-alert class="alert-box alert>">
+                <%= content_tag :div, message %>
+                <a href="#" class="close">&times;</a>
+              </div>
+          <% end %>
+        </ul>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :email %>
+      <br/>
+      <%= f.text_field :email %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Sign Up" %>
+    </div>
+<% end %>

@@ -1,0 +1,9 @@
+<h1>Reset Shared Secret</h1>
+
+<%= form_tag shared_secret_resets_path, :method => :post do %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+  <div class="actions"><%= submit_tag 'Reset Shared Secret' %></div>
+<% end %>
