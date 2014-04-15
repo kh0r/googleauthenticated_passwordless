@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.validates(params[:validation_code])
       session[:user_id] = user.id
-      redirect_to root_url, notice: "Logged in!"
+      redirect_to root_url, notice: 'Logged in!'
     else
-      flash.now.alert = "Email or password is invalid."
+      redirect_to new_session_path, alert: 'Email or validation code is invalid.'
     end
   end
 
